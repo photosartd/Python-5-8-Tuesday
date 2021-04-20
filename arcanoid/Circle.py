@@ -1,6 +1,6 @@
 import pygame
 import random
-
+from brick import Platform, Brick
 class Circle:
     def __init__(self, radius, color, center, surface):
         self.radius = radius
@@ -43,12 +43,35 @@ class Circle:
                 self.is_jumping = False
                 self.jump_number = 10
 
-    def random_movement(self, width):
+    def collision(self, brick):
+        if ((self.y + self.radius >= brick.top and \
+             self.y + self.radius < brick.bottom) or \
+            (self.y - self.radius <= brick.bottom and \
+                 self.y - self.radius > brick.top)) and \
+                (brick.left <= self.x <= brick.right):
+                self.diff_y = -self.diff_y
+                if (isinstance(brick, Brick)):
+                    return True
+                elif isinstance(brick, Platform):
+                    return False
+        return False
+
+    def random_movement(self, width, brick, wall):
+        self.__wall_collision(wall)
+        self.collision(brick)
         self.x += self.diff_x
         self.y += self.diff_y
         if self.x + self.radius >= width or self.x - self.radius <= 0:
             self.diff_x = -self.diff_x
         if self.y + self.radius >= width or self.y - self.radius <= 0:
             self.diff_y = -self.diff_y
+
+    def __wall_collision(self, wall):
+        for brick in wall.bricks:
+            coll = self.collision(brick)
+            if coll:
+                wall.bricks.remove(brick)
+                if len(wall.bricks) == 0:
+                    wall.fill(50,50)        
 
 
