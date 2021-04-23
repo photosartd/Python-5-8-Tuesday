@@ -4,7 +4,9 @@ from random import choice
 connection = sqlite3.connect('school.sqlite')
 #получаем курсор
 cursor = connection.cursor()
+
 #создаём запрос на создание таблички
+#раскомментировать для создания
 # query = '''
 # CREATE TABLE IF NOT EXISTS class (
 #     id INTEGER PRIMARY KEY,
@@ -14,6 +16,8 @@ cursor = connection.cursor()
 # )
 # '''
 
+#создаём запрос на добавление данных
+#раскомментировать для создания
 # query_insert = '''
 # INSERT INTO class (name, surname, mark) VALUES
 #     ('Дамир', 'Гатауллин', 5),
@@ -24,6 +28,8 @@ cursor = connection.cursor()
 #     ('Дмитрий', 'Трофимов', 1)
 # '''
 
+#создаём запрос на добавление данных
+#раскомментировать для создания
 # query_insert = '''
 # INSERT INTO class (name, surname, mark) VALUES
 #     ('{}', '{}', {})
