@@ -42,17 +42,21 @@ while True:
         circle_color = yellow
         
     pygame.draw.circle(win, circle_color, (x,y), 25)
-    #Перемещение по клавишам
+    #Получение нажатых клавиш
     keys = pygame.key.get_pressed()
-    #Если кнопка ВЛЕВО нажата
+    #Если нажата стрелка влево
     if keys[pygame.K_LEFT]:
         x -= dc
+    #Если нажата стрелка вправо
     elif keys[pygame.K_RIGHT]:
         x += dc
+    #Если нажата стрелка вверх
     elif keys[pygame.K_UP]:
         y -= dc
+    #Если нажата стрелка вниз
     elif keys[pygame.K_DOWN]:
         y += dc
+    #где х, у - та точка графического примитива, которая передаётся в его отрисовку
     else:
         #А что здесь, если хотим вернуть окружность в центр?
             #Перемещения
@@ -65,7 +69,6 @@ while True:
             y -= dv
         elif x < center:
             y += dv
-        
-            
+
     pygame.display.update()
     pygame.time.delay(10)
